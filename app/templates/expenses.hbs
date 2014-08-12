@@ -2,22 +2,36 @@
 
 <table id="expenses-table">
   <tr>
+    <th>Date</th>
+    <th>Time</th>
+    <th>Desc</th>
     <th>Amount</th>
+    <th>Comment</th>
   </tr>
  
   {{#each model}}
     <tr>
-      <td>{{amount}}</td>
+      <td class="expense-date">{{pretty-date expenseDt}}</td>
+      <td class="expense-time">{{pretty-time expenseDt}}</td>
+      <td class="description">{{description}}</td>
+      <td class="amount">{{currency-amount amount}}</td>
+      <td class="comment">{{comment}}</td>
     </tr>
   {{/each}}
 
   {{#with newExpense}}
     <tr id="new-expense">
-      <td>{{input value=amount}}</td>
-      <td>new</td>
+      <td class="expense-date">{{input value=expenseDate}}</td>
+      <td class="expense-time">{{input value=expenseTime}}</td>
+      <td class="description">{{input value=description}}</td>
+      <td class="amount">{{input value=amount}}</td>
+      <td class="comment">{{textarea value=comment}}</td>
     </tr>
   {{/with}}
   
 </table>
 
 <button {{action 'save'}}>Save</button>
+
+<h3>Summary</h3>
+{{render "summary" model}}

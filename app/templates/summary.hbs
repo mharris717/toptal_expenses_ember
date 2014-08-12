@@ -1,0 +1,15 @@
+Total: {{currency-amount totalAmount}}
+
+<table id="summary">
+  <tr>
+    <th>Week</th>
+    <th>Amount</th>
+  </tr>
+
+  {{#each weeks}}
+    <tr>
+      <td class="week">{{name}}</td>
+      <td class="amount">{{currency-amount totalAmount}}</td>
+    </tr>
+  {{/each}}
+</table>
