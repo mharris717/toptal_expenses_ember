@@ -2,7 +2,9 @@
   "predef": {
     "document": true,
     "window": true,
-    "ExpensesENV": true
+    "ExpensesENV": true,
+    "moment": true,
+    "_": true
   },
   "browser" : true,
   "boss" : true,
