@@ -11,8 +11,8 @@
     </tr>
   {{/each}}
 
-  {{#with controller.newExpense}}
-    <tr>
+  {{#with newExpense}}
+    <tr id="new-expense">
       <td>{{input value=amount}}</td>
       <td>new</td>
     </tr>
