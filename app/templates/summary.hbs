@@ -4,12 +4,14 @@ Total: {{currency-amount totalAmount}}
   <tr>
     <th>Week</th>
     <th>Amount</th>
+    <th>Daily Average</th>
   </tr>
 
   {{#each weeks}}
     <tr>
       <td class="week">{{name}}</td>
       <td class="amount">{{currency-amount totalAmount}}</td>
+      <td>{{currency-amount averageDailyAmount}}</td>
     </tr>
   {{/each}}
 </table>

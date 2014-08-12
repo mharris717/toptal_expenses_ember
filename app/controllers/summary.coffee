@@ -12,7 +12,15 @@ Week = Ember.Object.extend
     e = moment(@endDate()).format("M/D/YY")
     "#{s} to #{e}").property("expenses.@each.expenseDt")
 
-  totalAmount: (-> _.reduce @get('expenses'), ((s,e) -> s + e.get('amount')), 0).property('expenses.@each.amount')
+  amounts: Ember.computed.map "expenses", (e) -> e.get('amount')
+  uniqueDateCount: (-> 
+    res = _.map @get('expenses'), (e) -> moment(e.get('expenseDt')).startOf('day').format("M/D/YY")
+    _.uniq(res).length).property("expenses.@each.expenseDt")
+
+    #).map((e) -> e.get('expenseDt')).uniq).property('expenses.#each.expenseDt')
+  totalAmount: Ember.computed.sum('amounts')
+  averageDailyAmount: (-> parseFloat(@get('totalAmount')) / parseFloat(@get('uniqueDateCount')) ).property("totalAmount","dates")
+  # totalAmountOld: (-> _.reduce @get('expenses'), ((s,e) -> s + e.get('amount')), 0).property('expenses.@each.amount')
 
 Week.reopenClass
   startDate: (dt) ->
