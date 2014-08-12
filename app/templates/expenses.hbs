@@ -1,0 +1,23 @@
+<span id="expenses-header">Expenses Table</span>
+
+<table id="expenses-table">
+  <tr>
+    <th>Amount</th>
+  </tr>
+ 
+  {{#each model}}
+    <tr>
+      <td>{{amount}}</td>
+    </tr>
+  {{/each}}
+
+  {{#with controller.newExpense}}
+    <tr>
+      <td>{{input value=amount}}</td>
+      <td>new</td>
+    </tr>
+  {{/with}}
+  
+</table>
+
+<button {{action 'save'}}>Save</button>
