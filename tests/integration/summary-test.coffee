@@ -9,7 +9,7 @@ module 'Integration - Expenses Summary',
 test "summary - basic", ->
   visit "/expenses"
   andThen =>
-    equal find("#summary td.amount:eq(0)").text(), "$100"
+    equal find("#summary td.amount:eq(0)").text(), "$175.42"
 
 test "summary - updates after add to same week", ->
   visit "/expenses"
@@ -19,7 +19,7 @@ test "summary - updates after add to same week", ->
   click "button"
 
   andThen =>
-    equal find("#summary td.amount:eq(0)").text(), "$150"
+    equal find("#summary td.amount:eq(0)").text(), "$225.42"
 
 
 test "summary - updates after add to different week", ->
@@ -34,10 +34,10 @@ test "summary - updates after add to different week", ->
 
     # earlier week should be first
     equal find("#summary td.amount:eq(0)").text(), "$50"
-    equal find("#summary td.amount:eq(1)").text(), "$100"
+    equal find("#summary td.amount:eq(1)").text(), "$175.42"
 
 test "summary - visit own page", ->
   visit "/summary"
   andThen =>
     equal find("#summary tr").length,2
-    equal find("#summary td.amount:eq(0)").text(), "$100"
+    equal find("#summary td.amount:eq(0)").text(), "$175.42"

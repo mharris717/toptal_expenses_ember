@@ -22,7 +22,7 @@ test 'Should welcome me', ->
   visit("/expenses").then ->
     equal find('#expenses-header').text(), 'Expenses Table'
 
-    shouldHaveExpenseRowCount 1
+    shouldHaveExpenseRowCount 2
 
 test 'New Expense Row', ->
   visit "/expenses"
@@ -34,9 +34,9 @@ test 'New Expense Save - Basic', ->
   fillIn "input",200
   click "button"
 
-  shouldHaveExpenseRowCount 2
+  shouldHaveExpenseRowCount 3
   andThen =>
-    equal expenseVal('amount',2),"$200"
+    equal expenseVal('amount',3),"$200"
 
 test 'New Expense Save - Date', ->
   visit "/expenses"
@@ -45,11 +45,11 @@ test 'New Expense Save - Date', ->
   fillInExpense 'expense-time','9:30'
   click "button"
 
-  shouldHaveExpenseRowCount 2
+  shouldHaveExpenseRowCount 3
   andThen =>
-    equal expenseVal("amount",2),"$250"
-    equal expenseVal("expense-date",2),"7/17/82"
-    equal expenseVal("expense-time",2),"9:30"
+    equal expenseVal("amount",3),"$250"
+    equal expenseVal("expense-date",3),"7/17/82"
+    equal expenseVal("expense-time",3),"9:30"
 
 test 'save multiple new expenses', ->
   visit "/expenses"
@@ -59,17 +59,17 @@ test 'save multiple new expenses', ->
 
   click "button"
 
-  shouldHaveExpenseRowCount 2
+  shouldHaveExpenseRowCount 3
   andThen =>
     equal find("#new-expense .amount input").val(),""
 
   fillInExpense 'amount',50
   click "button"
 
-  shouldHaveExpenseRowCount 3
+  shouldHaveExpenseRowCount 4
   andThen =>
-    equal expenseVal("amount",2),"$300"
-    equal expenseVal("amount",3),"$50"
+    equal expenseVal("amount",3),"$300"
+    equal expenseVal("amount",4),"$50"
     equal find("#new-expense .amount input").val(),""
 
 
