@@ -1,3 +1,13 @@
 <h2 id='title'>Welcome to Expenses</h2>
 
+<h3>Auth Status</h3>
+
+{{#if session.isAuthenticated}}
+  <a {{ action 'invalidateSession' }}>Logout</a>
+{{else}}
+  {{#link-to 'login'}}Login{{/link-to}}
+{{/if}}
+
+<h3>Main</h3>
+
 {{outlet}}

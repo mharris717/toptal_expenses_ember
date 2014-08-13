@@ -6,5 +6,6 @@ Router = Ember.Router.extend
 Router.map ->
   @resource('expenses')
   @route('summary')
+  @route "login"
 
 `export default Router`
