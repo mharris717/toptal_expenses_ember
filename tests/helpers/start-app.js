@@ -3,6 +3,7 @@
 var Application = require('expenses/app')['default'];
 var Router = require('expenses/router')['default'];
 import Ember from 'ember';
+import 'simple-auth-testing/test-helpers';
 
 export default function startApp(attrs) {
   var App;

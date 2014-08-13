@@ -29,6 +29,7 @@
     "originate": "0.1.5",
     "ember-cli-coffeescript": "0.0.5",
     "ember-cli-simple-auth": "^0.6.4-1",
-    "ember-cli-simple-auth-devise": "^0.6.4-1"
+    "ember-cli-simple-auth-devise": "^0.6.4-1",
+    "ember-cli-simple-auth-testing": "^0.6.4-1"
   }
 }

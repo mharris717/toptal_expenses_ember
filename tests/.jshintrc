@@ -46,7 +46,9 @@
     "currentRouteName",
     "moment",
     "_",
-    "Pretender"
+    "Pretender",
+    "authenticateSession",
+    "invalidateSession"
   ],
   "node": false,
   "browser": false,

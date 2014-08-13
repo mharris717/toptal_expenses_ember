@@ -1,0 +1,19 @@
+`import startApp from 'expenses/tests/helpers/start-app'`
+
+App = null
+
+module 'Integration - Unauthorized User',
+  setup: -> 
+    App = startApp()
+
+  teardown: -> 
+    Em.run(App,'destroy')
+
+test 'Should Show login link', ->
+  invalidateSession()
+  visit("/expenses").then ->
+    equal find("#auth-status #login-link").length,1
+
+test 'Shows no expenses', ->
+  visit("/expenses").then ->
+    equal find("#expenses-table").length,0

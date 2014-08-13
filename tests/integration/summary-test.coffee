@@ -8,6 +8,7 @@ module 'Integration - Expenses Summary',
   setup: -> 
     App = startApp()
     server = pretenderServer()
+    
   teardown: -> 
     Em.run(App,'destroy')
     server.shutdown()
