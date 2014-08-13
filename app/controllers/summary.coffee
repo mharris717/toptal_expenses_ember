@@ -1,3 +1,5 @@
+`import Ember from 'ember'`
+
 Week = Ember.Object.extend
   startDate: -> 
     dt = @get('expenses.firstObject.expenseDt')

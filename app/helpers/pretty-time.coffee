@@ -1,3 +1,5 @@
+`import Ember from 'ember'`
+
 h = Ember.Handlebars.makeBoundHelper (dt) ->
   res = ""
   if dt
