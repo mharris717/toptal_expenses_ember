@@ -45,7 +45,8 @@
     "currentPath",
     "currentRouteName",
     "moment",
-    "_"
+    "_",
+    "Pretender"
   ],
   "node": false,
   "browser": false,

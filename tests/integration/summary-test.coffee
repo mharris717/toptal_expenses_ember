@@ -1,10 +1,16 @@
 `import startApp from 'expenses/tests/helpers/start-app'`
+`import pretenderServer from 'expenses/tests/helpers/pretender-server'`
 
 App = null
+server = null
 
 module 'Integration - Expenses Summary',
-  setup: -> App = startApp()
-  teardown: -> Em.run(App,'destroy')
+  setup: -> 
+    App = startApp()
+    server = pretenderServer()
+  teardown: -> 
+    Em.run(App,'destroy')
+    server.shutdown()
 
 test "summary - basic", ->
   visit "/expenses"

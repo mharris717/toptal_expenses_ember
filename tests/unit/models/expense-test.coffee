@@ -4,7 +4,6 @@
 moduleForModel 'expense', 'Expense',
   needs: []
 
-
 test 'it exists', ->
   model = @subject()
   # var store = this.store();

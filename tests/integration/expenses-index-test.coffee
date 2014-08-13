@@ -1,10 +1,21 @@
 `import startApp from 'expenses/tests/helpers/start-app'`
+`import pretenderServer from 'expenses/tests/helpers/pretender-server'`
 
 App = null
+server = null
 
 module 'Integration - Expenses Index',
-  setup: -> App = startApp()
-  teardown: -> Em.run(App,'destroy')
+  setup: -> 
+    App = startApp()
+
+    expenses = [{id: 1, amount: 100, description: "Dinner for team", expenseDt: Date.now()}
+                {id: 2, amount: 75.42, description: "Lunch for team", expenseDt: Date.now()-1}]
+
+    server = pretenderServer()
+
+  teardown: -> 
+    Em.run(App,'destroy')
+    server.shutdown()
 
 Ember.Test.registerAsyncHelper 'shouldHaveExpenseRowCount', 
   (app,n,context) ->

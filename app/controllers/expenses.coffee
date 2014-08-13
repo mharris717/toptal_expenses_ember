@@ -1,6 +1,8 @@
 `import Ember from 'ember'`
 # `import moment from 'moment'`
 
+defaultOps = {expenseDate: "8/12/14", expenseTime: "20:30", description: "stuff", amount: 10}
+
 c = Ember.ArrayController.extend
   newExpense: (-> Ember.Object.create()).property()
 
@@ -11,9 +13,12 @@ c = Ember.ArrayController.extend
 
       # validate stuff
       
-      @store.createRecord 'expense', 
+      obj = @store.createRecord 'expense', 
         amount: parseInt(@get('newExpense.amount'))
         expenseDt: date
+        description: @get("newExpense.description")
+        comment: @get('newExpense.comment')
+      obj.save()
       @set 'newExpense',Ember.Object.create()
 
 `export default c`

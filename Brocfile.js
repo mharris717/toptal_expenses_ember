@@ -7,6 +7,10 @@ var app = new EmberApp();
 app.import('vendor/moment/moment.js');
 app.import('vendor/underscore/underscore.js');
 
+app.import({development:'vendor/route-recognizer/dist/route-recognizer.js'});
+app.import({development:'vendor/FakeXMLHttpRequest/fake_xml_http_request.js'});
+app.import({development:'vendor/pretender/pretender.js'});
+
 // Use `app.import` to add additional libraries to the generated
 // output files.
 //

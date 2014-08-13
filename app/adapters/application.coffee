@@ -1,5 +1,5 @@
 `import DS from 'ember-data'`
 
-a = DS.FixtureAdapter.extend()
+a = DS.ActiveModelAdapter.extend()
 
 `export default a`
