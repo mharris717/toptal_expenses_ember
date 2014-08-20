@@ -9,8 +9,9 @@ m = DS.Model.extend
 
 m.reopenClass
   FIXTURES: [
-    {id: 1, amount: 100, description: "Dinner for team", expenseDt: Date.now()}
-    {id: 2, amount: 75.42, description: "Lunch for team", expenseDt: Date.now()-1}
+    {id: 1, amount: 100, description: "Dinner for team", expense_dt: (new Date(2014,7,2)), user_id: 1}
+    {id: 2, amount: 75.42, description: "Lunch for team", expense_dt: (new Date(2014,7,1)), user_id: 1}
+    {id: 3, amount: 50, description: "TONER!!!!!", expense_dt: (new Date(2014,7,1)), user_id: 2}
   ]
 
 `export default m`

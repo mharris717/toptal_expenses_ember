@@ -12,6 +12,6 @@ test 'it exists', ->
 test 'fixture count', ->
   Em.run =>
     @store().find('expense').then (expenses) ->
-      equal expenses.get('content').length,2
+      equal expenses.get('content').length,3
 
   # model.find()

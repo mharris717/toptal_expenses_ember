@@ -1,10 +1,13 @@
 `import Ember from 'ember'`
-# `import moment from 'moment'`
+`import Filter from 'expenses/models/filter'`
 
 defaultOps = {expenseDate: "8/12/14", expenseTime: "20:30", description: "stuff", amount: 10}
 
 c = Ember.ArrayController.extend
   newExpense: (-> Ember.Object.create()).property()
+
+  filterObj: (->
+    Filter.create(all: @get('model'))).property("this.@each.amount")
 
   actions: 
     save: ->

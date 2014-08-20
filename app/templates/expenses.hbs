@@ -1,4 +1,9 @@
 {{#if session.isAuthenticated}}
+
+{{#with filterObj}}
+  {{partial "filter"}}
+{{/with}}
+
 <span id="expenses-header">Expenses Table</span>
 
 <table id="expenses-table">
@@ -10,7 +15,7 @@
     <th>Comment</th>
   </tr>
  
-  {{#each model}}
+  {{#each filterObj.filtered}}
     <tr>
       <td class="expense-date">{{pretty-date expenseDt}}</td>
       <td class="expense-time">{{pretty-time expenseDt}}</td>
@@ -33,6 +38,10 @@
 </table>
 
 <button {{action 'save'}}>Save</button>
+
+<br>
+Filtered Count: {{filterObj.filtered.length}}
+<br>
 
 <h3>Summary</h3>
 {{render "summary" model}}

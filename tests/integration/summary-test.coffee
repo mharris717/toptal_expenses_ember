@@ -8,6 +8,7 @@ module 'Integration - Expenses Summary',
   setup: -> 
     App = startApp()
     server = pretenderServer()
+    Ember.run => authenticateSession()
     
   teardown: -> 
     Em.run(App,'destroy')
@@ -21,18 +22,22 @@ test "summary - basic", ->
 test "summary - updates after add to same week", ->
   visit "/expenses"
   fillInExpense 'amount',50
-  fillInExpense 'expense-date','8/12/14'
+  fillInExpense 'expense-date','8/01/14'
   fillInExpense 'expense-time','9:30'
+  # andThen => debugger
   click "button"
 
+
+
   andThen =>
+    # debugger
     equal find("#summary td.amount:eq(0)").text(), "$225.42"
 
 
 test "summary - updates after add to different week", ->
   visit "/expenses"
   fillInExpense 'amount',50
-  fillInExpense 'expense-date','8/05/14'
+  fillInExpense 'expense-date','7/01/14'
   fillInExpense 'expense-time','9:30'
   click "button"
 

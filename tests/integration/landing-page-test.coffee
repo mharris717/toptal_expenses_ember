@@ -3,7 +3,10 @@
 App = null
 
 module 'Integration - Landing Page',
-  setup: -> App = startApp()
+  setup: -> 
+    App = startApp()
+    Ember.run => authenticateSession()
+    
   teardown: -> Em.run(App,'destroy')
 
 if false

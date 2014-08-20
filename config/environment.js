@@ -15,9 +15,7 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-    },
-
-    'simple-auth': {authorizer: 'simple-auth-authorizer:devise'}
+    }
   };
 
   if (environment === 'development') {
@@ -38,3 +36,5 @@ module.exports = function(environment) {
 
   return ENV;
 };
+
+

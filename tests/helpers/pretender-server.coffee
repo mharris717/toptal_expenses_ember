@@ -1,13 +1,11 @@
 `import Expense from 'expenses/models/expense'`
 
-#expenses = [{id: 1, amount: 100, description: "Dinner for team", expenseDt: Date.now()}
-#            {id: 2, amount: 75.42, description: "Lunch for team", expenseDt: Date.now()-1}]
-
-expenses = Expense.FIXTURES
+expenses = _.filter Expense.FIXTURES, (e) -> e.user_id == 1
 
 makeServer = ->
   server = new Pretender ->
     @get "/expenses", (request) ->
+      # debugger
       [200, {"Content-Type": "application/json"}, JSON.stringify(expenses: expenses)]
 
     @get "/expenses/:id", (request) ->

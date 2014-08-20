@@ -1,29 +1,23 @@
 `import startApp from 'expenses/tests/helpers/start-app'`
 `import pretenderServer from 'expenses/tests/helpers/pretender-server'`
+`import setupHelpers from 'expenses/tests/helpers/table-helpers'`
 
 App = null
 server = null
+
+setupHelpers()
 
 module 'Integration - Expenses Index',
   setup: -> 
     App = startApp()
     server = pretenderServer()
 
+    Ember.run => authenticateSession()
+    console.debug "authed"
+
   teardown: -> 
     Em.run(App,'destroy')
     server.shutdown()
-
-Ember.Test.registerAsyncHelper 'shouldHaveExpenseRowCount', 
-  (app,n,context) ->
-    equal findWithAssert("#expenses-table tr",context).length - 2,n
-
-Ember.Test.registerAsyncHelper 'fillInExpense', 
-  (app,field,val,context) ->
-    fillIn "#new-expense .#{field} input",val
-
-Ember.Test.registerAsyncHelper 'expenseVal', 
-  (app,field,rowNum,context) ->
-    find("#expenses-table tr:eq(#{rowNum}) td.#{field}").text()
 
 test 'Should welcome me', ->
   visit("/expenses").then ->
