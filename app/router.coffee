@@ -7,5 +7,6 @@ Router.map ->
   @resource('expenses')
   @route('summary')
   @route "login"
+  @route "register"
 
 `export default Router`
