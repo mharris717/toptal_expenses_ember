@@ -21,8 +21,6 @@ module 'Integration - Expenses Index',
 
 test 'Should welcome me', ->
   visit("/expenses").then ->
-    equal find('#expenses-header').text(), 'Expenses Table'
-
     shouldHaveExpenseRowCount 2
 
 test 'New Expense Row', ->
@@ -30,26 +28,20 @@ test 'New Expense Row', ->
   andThen =>
     equal find("#expenses-table tr#new-expense").length,1
 
-test 'New Expense Save - Basic', ->
-  visit "/expenses"
-  fillIn "input",200
-  click "button"
-
-  shouldHaveExpenseRowCount 3
-  andThen =>
-    equal expenseVal('amount',3),"$200"
-
 test 'New Expense Save - Date', ->
   visit "/expenses"
   fillInExpense 'amount',250
-  fillInExpense 'expense-date','7/17/82'
+  fillInExpense 'expense-date','08/17/2014'
   fillInExpense 'expense-time','9:30'
+
+  # andThen => debugger
+
   click "button"
 
   shouldHaveExpenseRowCount 3
   andThen =>
     equal expenseVal("amount",3),"$250"
-    equal expenseVal("expense-date",3),"7/17/82"
+    equal expenseVal("expense-date",3),"8/17/14"
     equal expenseVal("expense-time",3),"9:30"
 
 test 'save multiple new expenses', ->

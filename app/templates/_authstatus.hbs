@@ -1,0 +1,12 @@
+<span id="auth-status">
+  {{#if session.isAuthenticated}}
+    <a {{ action 'invalidateSession' }}>Logout</a>
+  {{else}}
+    <span id="login-link">
+      {{#link-to 'login'}}Login{{/link-to}}
+    </span> |
+    <span id="register-link">
+      {{#link-to 'register'}}Register{{/link-to}}
+    </span>
+  {{/if}}
+</span>

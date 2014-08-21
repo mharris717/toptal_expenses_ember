@@ -1,3 +1,25 @@
 html, body {
   margin: 20px;
 }
+
+#auth-status {
+  margin-bottom: 30px;
+}
+
+.summary-container {
+
+}
+
+#main {
+  max-width: 1000px;
+}
+
+#expenses-filter {
+  max-width: 60%;
+  margin-bottom: 30px;
+}
+
+#expenses-filter input{
+  width: 100px;
+}
+

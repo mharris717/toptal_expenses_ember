@@ -10,9 +10,12 @@ isPresent = (obj) ->
   obj && obj != ''
 
 f = Ember.Object.extend
+  dateLow: ''
+  dateHigh: ''
+  
   parseDate: (str) -> 
-    if isPresent(str) && _.filter(str.split("/"), (s) -> isPresent(s)).length == 3
-      moment(str,"MM/DD/YY")._d
+    if isPresent(str)
+      str
     else
       null
 
@@ -28,7 +31,7 @@ f = Ember.Object.extend
     dateLow = @parseDate(@get('dateLow'))
     dateHigh = @parseDate(@get('dateHigh'))
 
-    res = @get('all')
+    res = myFilter @get('all'), -> true
 
     if amountLow
       res = myFilter res, (e) -> e.get('amount') >= amountLow
@@ -42,6 +45,6 @@ f = Ember.Object.extend
     if dateHigh
       res = myFilter res, (e) -> e.get('expenseDt') <= dateHigh
 
-    res).property('all.@each.amount','amountLow','amountHigh','dateLow','dateHigh')
+    _.sortBy res, (e) -> e.get('expenseDt')).property('all.@each.amount','amountLow','amountHigh','dateLow','dateHigh')
 
 `export default f`

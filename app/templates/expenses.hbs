@@ -4,9 +4,9 @@
   {{partial "filter"}}
 {{/with}}
 
-<span id="expenses-header">Expenses Table</span>
+<h3>Expenses</h3>
 
-<table id="expenses-table">
+<table id="expenses-table" class='table'>
   <tr>
     <th>Date</th>
     <th>Time</th>
@@ -32,16 +32,12 @@
       <td class="description">{{input value=description}}</td>
       <td class="amount">{{input value=amount}}</td>
       <td class="comment">{{textarea value=comment}}</td>
+      <td>
+        <button {{action 'save'}}>Save</button>
+      </td>
     </tr>
   {{/with}}
-  
 </table>
-
-<button {{action 'save'}}>Save</button>
-
-<br>
-Filtered Count: {{filterObj.filtered.length}}
-<br>
 
 <h3>Summary</h3>
 {{render "summary" model}}

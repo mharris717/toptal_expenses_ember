@@ -24,6 +24,9 @@ Week = Ember.Object.extend
   averageDailyAmount: (-> parseFloat(@get('totalAmount')) / parseFloat(@get('uniqueDateCount')) ).property("totalAmount","dates")
   # totalAmountOld: (-> _.reduce @get('expenses'), ((s,e) -> s + e.get('amount')), 0).property('expenses.@each.amount')
 
+TotalWeek = Week.extend
+  name: (-> "Total").property()
+
 Week.reopenClass
   startDate: (dt) ->
     moment(dt).startOf('week')._d
@@ -35,6 +38,11 @@ c = Ember.ArrayController.extend
       res += expense.get('amount')
     res).property('this.@each.amount')
 
+  allExpenses: ->
+    res = []
+    @forEach (e) -> res.push(e)
+    res
+
   weeks: (->
     res = {}
     @forEach (expense) ->
@@ -44,7 +52,9 @@ c = Ember.ArrayController.extend
 
     vals = _.values(res)
     unsortedWeeks = _.map vals, (es) -> Week.create(expenses: es)
-    _.sortBy unsortedWeeks, (w) -> w.startDate()).property("this.@each.amount","this.@each.expenseDt")
+    res = _.sortBy unsortedWeeks, (w) -> w.startDate()
+    res.push(TotalWeek.create(expenses: @allExpenses()))
+    res).property("this.@each.amount","this.@each.expenseDt")
 
 
 `export default c`

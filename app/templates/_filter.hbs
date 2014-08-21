@@ -1,5 +1,7 @@
+<h3>Filter</h3>
+
 <div id="expenses-filter">
-  <table>
+  <table class="table">
     <tr>
       <th></th>
       <th>Min</th>
@@ -16,17 +18,9 @@
 
     <tr>
       <th>Date</th>
-      <td id="date-low">{{input value=dateLow}}</td>
+      <td id="date-low">{{view "date-field-view" date=dateLow}}</td>
       <td>to</td>
-      <td id="date-high">{{input value=dateHigh}}</td>
+      <td id="date-high">{{view "date-field-view" date=dateHigh}}</td>
     </tr>
   </table>
 </div>
-
-
-
-
-
-
-<br>
-<br>

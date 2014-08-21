@@ -1,19 +1,5 @@
 {{partial "nav"}}
 
-<h2 id='title'>Welcome to Expenses</h2>
-
-<h3>Auth Status</h3>
-
-<div id="auth-status">
-  {{#if session.isAuthenticated}}
-    <a {{ action 'invalidateSession' }}>Logout</a>
-  {{else}}
-    <span id="login-link">
-      {{#link-to 'login'}}Login{{/link-to}}
-    </span>
-  {{/if}}
+<div id="main">
+  {{outlet}}
 </div>
-
-<h3>Main</h3>
-
-{{outlet}}

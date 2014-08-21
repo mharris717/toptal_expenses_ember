@@ -1,6 +1,7 @@
 `import Ember from 'ember'`
 
 r = Ember.Route.extend
-  redirect: -> @transitionTo('expenses')
+  beforeModel: ->
+    @transitionTo("expenses")
 
 `export default r`

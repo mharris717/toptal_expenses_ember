@@ -24,13 +24,9 @@ test "summary - updates after add to same week", ->
   fillInExpense 'amount',50
   fillInExpense 'expense-date','8/01/14'
   fillInExpense 'expense-time','9:30'
-  # andThen => debugger
   click "button"
 
-
-
   andThen =>
-    # debugger
     equal find("#summary td.amount:eq(0)").text(), "$225.42"
 
 
@@ -42,14 +38,21 @@ test "summary - updates after add to different week", ->
   click "button"
 
   andThen =>
-    equal find("#summary tr").length,3
+    equal find("#summary tr").length,4
 
     # earlier week should be first
     equal find("#summary td.amount:eq(0)").text(), "$50"
+    equal find("#summary td.amount:eq(1)").text(), "$175.42"
+    equal find("#summary td.amount:eq(2)").text(), "$225.42"
+
+test "summary - total row", ->
+  visit "/expenses"
+
+  andThen =>
     equal find("#summary td.amount:eq(1)").text(), "$175.42"
 
 test "summary - visit own page", ->
   visit "/summary"
   andThen =>
-    equal find("#summary tr").length,2
+    equal find("#summary tr").length,3
     equal find("#summary td.amount:eq(0)").text(), "$175.42"
