@@ -11,8 +11,8 @@ c = Ember.ArrayController.extend
 
   actions: 
     save: ->
-      date = @get('newExpense.expenseDate') + " " + @get('newExpense.expenseTime')
-      date = moment(date,"MM/DD/YY H:mm")._d
+      date = @get('newExpense.expenseDate')# + " " + @get('newExpense.expenseTime')
+      # date = moment(date,"MM/DD/YY H:mm")._d
 
       # validate stuff
       

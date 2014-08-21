@@ -27,7 +27,7 @@
 
   {{#with newExpense}}
     <tr id="new-expense">
-      <td class="expense-date">{{input value=expenseDate}}</td>
+      <td class="expense-date">{{view "date-field-view" date=expenseDate}}</td>
       <td class="expense-time">{{input value=expenseTime}}</td>
       <td class="description">{{input value=description}}</td>
       <td class="amount">{{input value=amount}}</td>

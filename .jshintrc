@@ -4,7 +4,8 @@
     "window": true,
     "ExpensesENV": true,
     "moment": true,
-    "_": true
+    "_": true,
+    "Pikaday": true
   },
   "browser" : true,
   "boss" : true,

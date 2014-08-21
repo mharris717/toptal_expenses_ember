@@ -14,6 +14,7 @@
     "ember-cli-test-loader": "rjackson/ember-cli-test-loader#0.0.2",
     "moment": "~2.7.0",
     "underscore": "~1.6.0",
-    "pretender": "trek/pretender#0.0.5"
+    "pretender": "trek/pretender#0.0.5",
+    "pikaday": "~1.2.0"
   }
 }

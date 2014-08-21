@@ -11,12 +11,10 @@ isPresent = (obj) ->
 
 f = Ember.Object.extend
   parseDate: (str) -> 
-    res = if isPresent(str) && _.filter(str.split("/"), (s) -> isPresent(s)).length == 3
+    if isPresent(str) && _.filter(str.split("/"), (s) -> isPresent(s)).length == 3
       moment(str,"MM/DD/YY")._d
     else
       null
-    console.debug "parsed #{str} into #{res}"
-    res
 
   parseNum: (str) ->
     if isPresent(str)
