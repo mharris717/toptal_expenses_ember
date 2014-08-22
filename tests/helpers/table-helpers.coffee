@@ -9,6 +9,10 @@ f = ->
 
   Ember.Test.registerAsyncHelper 'expenseVal', 
     (app,field,rowNum,context) ->
-      find("#expenses-table tr:eq(#{rowNum}) td.#{field}").text()
+      findWithAssert("#expenses-table tr:eq(#{rowNum}) td.#{field}").text()
 
+  Ember.Test.registerAsyncHelper 'fillInExpenseEdit', 
+    (app,field,val,rowNum,context) ->
+      fillIn "#expenses-table tr:eq(#{rowNum}) .#{field} input",val
+      
 `export default f`

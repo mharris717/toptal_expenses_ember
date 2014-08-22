@@ -22,7 +22,29 @@ expensesTest = (name,f) ->
   test name, ->
     visit("/expenses").then(f)
 
-expensesTest 'Click edit link', ->
-  click("#edit-mode a")
+expensesTest 'Shows editable fields', ->
+  click ".edit-mode:eq(0) button"
 
-  equal findWithAssert("#expenses-table tr:eq(1) input").length,5
+  ensureCount = (selector,num) ->
+    equal findWithAssert("#expenses-table tr:eq(1) #{selector}").length,num
+
+  ensureCount "input",4
+  ensureCount "textarea",1
+  ensureCount "button",1
+  ensureCount ".save",1
+
+expensesTest 'Save', ->
+  shouldHaveExpenseRowCount 2
+
+  click ".edit-mode:eq(0) button"
+  fillInExpenseEdit "expense-date","9/1/14",1
+  fillInExpenseEdit "description","Lunch",1
+  fillInExpenseEdit "amount","32",1
+  click ".save:eq(0) button"
+
+  andThen =>
+    shouldHaveExpenseRowCount 2
+    equal expenseVal("expense-date",1),"9/1/14"
+    equal expenseVal("amount",1),"$32"
+  
+

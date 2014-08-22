@@ -1,14 +1,8 @@
-{{#if session.isAuthenticated}}
-
 {{#with filterObj}}
   {{partial "filter"}}
 {{/with}}
 
 <h3>Expenses</h3>
-
-<span id="edit-mode">
-  <a href="#" {{action "toggleEditMode"}}>Edit</a>
-</span>
 
 <table id="expenses-table" class='table'>
   <tr>
@@ -21,21 +15,14 @@
  
   {{#each filterObj.filtered}}
     <tr>
-      {{#if editMode}}
-        {{partial "editrow"}}
-      {{else}}
-        {{partial "displayrow"}}
-      {{/if}}
+      {{render "expense" this}}
     </tr>
   {{/each}}
 
-  {{#with newExpense}}
-    <tr id="new-expense">
-      {{partial "editrow"}}
-    </tr>
-  {{/with}}
+  <tr id="new-expense">
+    {{render "new_expense" newExpense editMode=true}}
+  </tr>
 </table>
 
 <h3>Summary</h3>
 {{render "summary" model}}
-{{/if}}

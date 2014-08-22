@@ -13,7 +13,6 @@ module 'Integration - Expenses Index',
     server = pretenderServer()
 
     Ember.run => authenticateSession()
-    console.debug "authed"
 
   teardown: -> 
     Em.run(App,'destroy')
@@ -36,7 +35,7 @@ test 'New Expense Save - Date', ->
 
   # andThen => debugger
 
-  click "button"
+  click "#new-expense button"
 
   shouldHaveExpenseRowCount 3
   andThen =>
@@ -50,19 +49,31 @@ test 'save multiple new expenses', ->
   andThen =>
     equal find("#new-expense .amount input").val(),"300"
 
-  click "button"
+  click "#new-expense button"
 
   shouldHaveExpenseRowCount 3
   andThen =>
     equal find("#new-expense .amount input").val(),""
 
   fillInExpense 'amount',50
-  click "button"
+  fillInExpense 'expense-date','9/1/14'
+
+  click "#new-expense button"
 
   shouldHaveExpenseRowCount 4
   andThen =>
     equal expenseVal("amount",3),"$300"
     equal expenseVal("amount",4),"$50"
+    equal expenseVal('expense-date',4),"9/1/14"
     equal find("#new-expense .amount input").val(),""
+
+test "save invalid", ->
+  visit "/expenses"
+  click "#new-expense button"
+
+  andThen =>
+    equal find("#flash").length,1
+    equal find("#flash").text(),"Missing Amount"
+    shouldHaveExpenseRowCount 2
 
 

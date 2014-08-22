@@ -14,7 +14,7 @@ Week = Ember.Object.extend
     e = moment(@endDate()).format("M/D/YY")
     "#{s} to #{e}").property("expenses.@each.expenseDt")
 
-  amounts: Ember.computed.map "expenses", (e) -> e.get('amount')
+  amounts: Ember.computed.map "expenses", (e) -> parseFloat(e.get('amount'))
   uniqueDateCount: (-> 
     res = _.map @get('expenses'), (e) -> moment(e.get('expenseDt')).startOf('day').format("M/D/YY")
     _.uniq(res).length).property("expenses.@each.expenseDt")
@@ -35,7 +35,7 @@ c = Ember.ArrayController.extend
   totalAmount: (->
     res = 0
     @forEach (expense) ->
-      res += expense.get('amount')
+      res += parseFloat(expense.get('amount'))
     res).property('this.@each.amount')
 
   allExpenses: ->
