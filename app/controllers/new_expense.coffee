@@ -6,6 +6,6 @@ c = Ember.ObjectController.extend
       if @get('model').save()
         @get('model').reset()
       else
-        $("#flash").text('Missing Amount')
+        jQuery("#flash").text('Missing Amount')
 
 `export default c`

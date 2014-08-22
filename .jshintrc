@@ -5,7 +5,8 @@
     "ExpensesENV": true,
     "moment": true,
     "_": true,
-    "Pikaday": true
+    "Pikaday": true,
+    "jQuery": true
   },
   "browser" : true,
   "boss" : true,
