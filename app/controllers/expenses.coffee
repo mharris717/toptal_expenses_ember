@@ -19,7 +19,7 @@ c = Ember.ArrayController.extend
   newExpense: (-> NewExpense.create()).property()
 
   filterObj: (->
-    Filter.create(all: @get('model'))).property("this.@each.amount")
+    Filter.create(all: @get('model'), parent: this)).property("this.@each.amount")
 
   actions: 
     save: ->
@@ -34,5 +34,9 @@ c = Ember.ArrayController.extend
         comment: @get('newExpense.comment')
       obj.save()
       @set 'newExpense',NewExpense.create()
+
+    toggleEditMode: ->
+      console.debug "toggling"
+      @get('filterObj.filtered').forEach (e) -> e.set('editMode',true)
 
 `export default c`

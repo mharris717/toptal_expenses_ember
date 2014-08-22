@@ -6,6 +6,10 @@
 
 <h3>Expenses</h3>
 
+<span id="edit-mode">
+  <a href="#" {{action "toggleEditMode"}}>Edit</a>
+</span>
+
 <table id="expenses-table" class='table'>
   <tr>
     <th>Date</th>
@@ -17,24 +21,17 @@
  
   {{#each filterObj.filtered}}
     <tr>
-      <td class="expense-date">{{pretty-date expenseDt}}</td>
-      <td class="expense-time">{{pretty-time expenseDt}}</td>
-      <td class="description">{{description}}</td>
-      <td class="amount">{{currency-amount amount}}</td>
-      <td class="comment">{{comment}}</td>
+      {{#if editMode}}
+        {{partial "editrow"}}
+      {{else}}
+        {{partial "displayrow"}}
+      {{/if}}
     </tr>
   {{/each}}
 
   {{#with newExpense}}
     <tr id="new-expense">
-      <td class="expense-date">{{view "date-field-view" date=expenseDate}}</td>
-      <td class="expense-time">{{input value=expenseTime}}</td>
-      <td class="description">{{input value=description}}</td>
-      <td class="amount">{{input value=amount}}</td>
-      <td class="comment">{{textarea value=comment}}</td>
-      <td>
-        <button {{action 'save'}}>Save</button>
-      </td>
+      {{partial "editrow"}}
     </tr>
   {{/with}}
 </table>

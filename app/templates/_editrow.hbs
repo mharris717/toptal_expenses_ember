@@ -1,0 +1,8 @@
+<td class="expense-date">{{view "date-field-view" date=expenseDate}}</td>
+<td class="expense-time">{{input value=expenseTime}}</td>
+<td class="description">{{input value=description}}</td>
+<td class="amount">{{input value=amount}}</td>
+<td class="comment">{{textarea value=comment}}</td>
+<td>
+  <button {{action 'save'}}>Save</button>
+</td>
