@@ -1,7 +1,7 @@
 `import Ember from 'ember'`
-`import ApplicationRouteMixin from 'simple-auth/mixins/application-route-mixin'`
+`import AuthenticatedRouteMixin from 'simple-auth/mixins/authenticated-route-mixin'`
 
-r = Ember.Route.extend ApplicationRouteMixin,
+r = Ember.Route.extend AuthenticatedRouteMixin,
   model: ->
     @store.find('expense')
 
