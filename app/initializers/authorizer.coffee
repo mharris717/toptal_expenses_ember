@@ -3,6 +3,7 @@ a =
   initialize: ->
     window.ENV = window.ENV || {};
 
+    # CHANGE FOR TESTING remove serverTokenEndpoint
     creds = 
       authorizer: 'simple-auth-authorizer:devise'
       crossOriginWhitelist: ['http://mharris717expenses.herokuapp.com','http://localhost:3000']
