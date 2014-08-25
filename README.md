@@ -9,6 +9,7 @@
 * If an expense has multiple validation errors, only one will be displayed.
 * Amount validation will let some invalid amounts through, such as 999abc (will become 999).
 * Editing the date doesn't change the sort order.
+* The validation on the registration form needs to be improved.
 
 ## Potential Enhancements
 
@@ -22,6 +23,8 @@
 # Better time entry.
 * Other currencies.
 * Commas in currency display. 
+* Email confirmation is not required after registration.
+* There is no password recovery functionality.
 
 ## Notes
 
