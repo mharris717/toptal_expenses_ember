@@ -9,4 +9,7 @@ m.reopenClass
   clearError: ->
     jQuery("#flash").text("")
 
+  setFlash: (message) ->
+    jQuery("#flash").text(message)
+
 `export default m`

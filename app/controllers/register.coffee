@@ -1,4 +1,5 @@
 `import Ember from 'ember'`
+`import ErrorUtil from 'expenses/models/error_util'`
 
 c = Ember.Controller.extend
   email: ''
@@ -10,6 +11,7 @@ c = Ember.Controller.extend
       r = @store.createRecord('user',attrs)
       r.save()
 
+      ErrorUtil.setFlash "Successfully Registered"
       @transitionTo 'expenses'
 
 `export default c`

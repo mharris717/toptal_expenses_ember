@@ -1,6 +1,7 @@
 <span id="auth-status">
   {{#if session.isAuthenticated}}
-    <a {{ action 'invalidateSession' }}>Logout</a>
+    <a {{ action 'invalidateSession' }}>Logout</a> |
+    Logged In as {{session.user_email}}
   {{else}}
     <span id="login-link">
       {{#link-to 'login'}}Login{{/link-to}}

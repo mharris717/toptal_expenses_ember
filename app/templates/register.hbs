@@ -1,6 +1,15 @@
 <h2>Register</h2>
 
-Email {{input value=email}} <br>
-Password {{input value=password}} <br>
+<table class="table">
+  <tr>
+    <td>Email</td>
+    <td>{{input value=email}}</td>
+  </tr>
+
+  <tr>
+    <td>Password</td>
+    <td>{{input type="password" value=password}}</td>
+  </tr>
+</table>
 
 <button {{action "save"}}>Register</button>
