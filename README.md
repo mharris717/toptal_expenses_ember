@@ -1,5 +1,10 @@
 # Expenses
 
+This project consists of two parts.
+
+1. A small server API built with Rails.
+2. An Ember application built with Ember-CLI.
+
 ## Known Issues
 
 * When editing the amount of an existing expense, the cursor loses focus after every keypress.
