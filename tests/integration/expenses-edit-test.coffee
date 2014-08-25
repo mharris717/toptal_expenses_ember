@@ -48,3 +48,13 @@ expensesTest 'Save', ->
     equal expenseVal("amount",1),"$32"
   
 
+expensesTest 'Validates changes', ->
+  click ".edit-mode:eq(0) button"
+  fillInExpenseEdit "description","",1
+  click ".save:eq(0) button"
+
+  andThen =>
+    shouldHaveExpenseRowCount 2
+    equal find("#flash").text(),"Missing Description"
+    equal find("#expenses-table tr:eq(1) input").length,4
+  

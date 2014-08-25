@@ -13,9 +13,6 @@ makeServer = ->
       [200, {"Content-Type": "application/json"}, JSON.stringify({expense: expense})]
 
     @post "/users/sign_in", (request) ->
-      console.debug "in user sign in"
-      console.debug request.params
-      
       if !request.requestBody.match("wrong")
         body = {id: 1, email: "jsmith@fake.com"}
         [200, {"Content-Type": "application/json"}, JSON.stringify(body)]

@@ -103,3 +103,15 @@ test "save invalid - invalid time", ->
     shouldHaveExpenseRowCount 2
 
 
+test "save invalid - invalid amount", ->
+  visit "/expenses"
+  fillInExpense 'description','filler'
+  fillInExpense 'amount','abc'
+
+  click "#new-expense button"
+
+
+  andThen =>
+    equal find("#flash").length,1
+    equal find("#flash").text(),"Missing Amount"
+    shouldHaveExpenseRowCount 2

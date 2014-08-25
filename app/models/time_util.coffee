@@ -13,9 +13,7 @@ m.reopenClass
       date.setMinutes(time.getMinutes())
       date
     else
-      console.debug "invalid date or time"
       errorFunc('Invalid Date or Time') if errorFunc
-      console.debug "after errorFunc"
       null
 
 `export default m`

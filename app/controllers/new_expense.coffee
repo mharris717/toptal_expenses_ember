@@ -1,15 +1,11 @@
 `import Ember from 'ember'`
+`import ErrorUtil from 'expenses/models/error_util'`
 
 c = Ember.ObjectController.extend
   actions: 
     save: ->
-      errorFunc = (error) ->
-        jQuery("#flash").text(error)
-
-      if @get('model').save(errorFunc)
+      if @get('model').save(ErrorUtil.setError)
         @get('model').reset()
-        jQuery("#flash").text("")
-
-        
+        ErrorUtil.clearError()
 
 `export default c`

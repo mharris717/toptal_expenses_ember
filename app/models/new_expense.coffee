@@ -15,9 +15,13 @@ m = Ember.Object.extend
     # TODO: validate stuff
 
     date = @getFullDate(errorFunc)
+    parsedAmount = parseFloat(@get('amount'))
 
     if isBlank(@get('amount'))
       errorFunc('Missing Amount')
+      null
+    else if !parsedAmount || parsedAmount <= 0
+      errorFunc("Missing Amount")
       null
     else if isBlank(@get('description'))
       errorFunc('Missing Description')
