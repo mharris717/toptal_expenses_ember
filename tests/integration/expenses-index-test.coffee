@@ -90,4 +90,16 @@ test "save invalid - missing description", ->
     equal find("#flash").text(),"Missing Description"
     shouldHaveExpenseRowCount 2
 
+test "save invalid - invalid time", ->
+  visit "/expenses"
+  fillInExpense 'description','filler'
+  fillInExpense 'amount','25'
+  fillInExpense "expense-time","99:99"
+  click "#new-expense button"
+
+  andThen =>
+    equal find("#flash").length,1
+    equal find("#flash").text(),"Invalid Date or Time"
+    shouldHaveExpenseRowCount 2
+
 

@@ -6,13 +6,15 @@ isBlank = (val) -> !val
 m = Ember.Object.extend
   expenseTime: '12:00'
   
-  getFullDate: ->
+  getFullDate: (errorFunc) ->
     date = @get('expenseDate')
     timeStr = @get('expenseTime')
-    TimeUtil.combineDateAndTime(date,timeStr)
+    TimeUtil.combineDateAndTime(date,timeStr,errorFunc)
 
   createRecord: (errorFunc) ->
     # TODO: validate stuff
+
+    date = @getFullDate(errorFunc)
 
     if isBlank(@get('amount'))
       errorFunc('Missing Amount')
@@ -20,10 +22,13 @@ m = Ember.Object.extend
     else if isBlank(@get('description'))
       errorFunc('Missing Description')
       null
+    else if !date
+      errorFunc('Invalid Date or Time')
+      null
     else
       @get('store').createRecord 'expense', 
         amount: parseFloat(@get('amount'))
-        expenseDt: @getFullDate()
+        expenseDt: date
         description: @get("description")
         comment: @get('comment')
 

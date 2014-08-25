@@ -22,6 +22,7 @@ test "summary - basic", ->
 test "summary - updates after add to same week", ->
   visit "/expenses"
   fillInExpense 'amount',50
+  fillInExpense 'description','filler'
   fillInExpense 'expense-date','8/01/14'
   fillInExpense 'expense-time','9:30'
   click "button"
@@ -33,6 +34,7 @@ test "summary - updates after add to same week", ->
 test "summary - updates after add to different week", ->
   visit "/expenses"
   fillInExpense 'amount',50
+  fillInExpense 'description','filler'
   fillInExpense 'expense-date','7/01/14'
   fillInExpense 'expense-time','9:30'
   click "button"
