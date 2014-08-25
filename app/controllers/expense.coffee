@@ -19,7 +19,7 @@ c = Ember.ObjectController.extend
         ErrorUtil.setError('Missing Amount')
         null
       else if !parsedAmount || parsedAmount <= 0
-        errorFunc("Missing Amount")
+        ErrorUtil.setError('Missing Amount')
         null
       else if isBlank(@get('model.description'))
         ErrorUtil.setError('Missing Description')
