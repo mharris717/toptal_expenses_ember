@@ -30,7 +30,7 @@ expensesTest 'Shows editable fields', ->
 
   ensureCount "input",4
   ensureCount "textarea",1
-  ensureCount "button",1
+  ensureCount "button",2
   ensureCount ".save",1
 
 expensesTest 'Save', ->
@@ -57,4 +57,13 @@ expensesTest 'Validates changes', ->
     shouldHaveExpenseRowCount 2
     equal find("#flash").text(),"Missing Description"
     equal find("#expenses-table tr:eq(1) input").length,4
+
+expensesTest 'Delete', ->
+  click ".edit-mode:eq(0) button"
+  click ".delete:eq(0) button"
+
+  andThen =>
+    shouldHaveExpenseRowCount 1
+    equal expenseVal("amount",1),"$100"
+
   

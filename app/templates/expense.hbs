@@ -1,5 +1,8 @@
 {{#if editMode}}
   {{partial "editrow"}}
+  <td class="delete">
+    <button {{action "delete"}}>Delete</button>
+  </td>
 {{else}}
   {{partial "displayrow"}}
 {{/if}}

@@ -37,4 +37,8 @@ c = Ember.ObjectController.extend
       val = @get('editMode')
       @set 'editMode',!val
 
+    delete: ->
+      @get('model').deleteRecord()
+      @get('model').save()
+
 `export default c`

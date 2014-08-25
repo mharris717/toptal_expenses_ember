@@ -25,7 +25,7 @@ test "summary - updates after add to same week", ->
   fillInExpense 'description','filler'
   fillInExpense 'expense-date','8/01/14'
   fillInExpense 'expense-time','9:30'
-  click "button"
+  click ".save button"
 
   andThen =>
     equal find("#summary td.amount:eq(0)").text(), "$225.42"
@@ -37,7 +37,7 @@ test "summary - updates after add to different week", ->
   fillInExpense 'description','filler'
   fillInExpense 'expense-date','7/01/14'
   fillInExpense 'expense-time','9:30'
-  click "button"
+  click ".save button"
 
   andThen =>
     equal find("#summary tr").length,4

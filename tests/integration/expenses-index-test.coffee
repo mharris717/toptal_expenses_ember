@@ -26,6 +26,7 @@ test 'New Expense Row', ->
   visit "/expenses"
   andThen =>
     equal find("#expenses-table tr#new-expense").length,1
+    equal find("#expenses-table tr#new-expense button").length,1
 
 test 'New Expense Save - Date', ->
   visit "/expenses"
@@ -36,7 +37,7 @@ test 'New Expense Save - Date', ->
 
   # andThen => debugger
 
-  click "#new-expense button"
+  click "#new-expense .save button"
 
   shouldHaveExpenseRowCount 3
   andThen =>
@@ -51,7 +52,7 @@ test 'save multiple new expenses', ->
   andThen =>
     equal find("#new-expense .amount input").val(),"300"
 
-  click "#new-expense button"
+  click "#new-expense .save button"
 
   shouldHaveExpenseRowCount 3
   andThen =>
@@ -61,7 +62,7 @@ test 'save multiple new expenses', ->
   fillInExpense 'expense-date','9/1/14'
   fillInExpense 'description','filler'
 
-  click "#new-expense button"
+  click "#new-expense .save button"
 
   shouldHaveExpenseRowCount 4
   andThen =>
@@ -73,7 +74,7 @@ test 'save multiple new expenses', ->
 test "save invalid - missing amount", ->
   visit "/expenses"
   fillInExpense 'description','hello'
-  click "#new-expense button"
+  click "#new-expense .save button"
 
   andThen =>
     equal find("#flash").length,1
@@ -83,7 +84,7 @@ test "save invalid - missing amount", ->
 test "save invalid - missing description", ->
   visit "/expenses"
   fillInExpense 'amount','25'
-  click "#new-expense button"
+  click "#new-expense .save button"
 
   andThen =>
     equal find("#flash").length,1
@@ -95,7 +96,7 @@ test "save invalid - invalid time", ->
   fillInExpense 'description','filler'
   fillInExpense 'amount','25'
   fillInExpense "expense-time","99:99"
-  click "#new-expense button"
+  click "#new-expense .save button"
 
   andThen =>
     equal find("#flash").length,1
@@ -108,7 +109,7 @@ test "save invalid - invalid amount", ->
   fillInExpense 'description','filler'
   fillInExpense 'amount','abc'
 
-  click "#new-expense button"
+  click "#new-expense .save button"
 
 
   andThen =>
