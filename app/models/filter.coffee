@@ -21,7 +21,7 @@ f = Ember.Object.extend
 
   parseNum: (str) ->
     if isPresent(str)
-      parseInt(str)
+      parseFloat(str)
     else
       null
 

@@ -1,6 +1,8 @@
 `import Ember from 'ember'`
 `import TimeUtil from 'expenses/models/time_util'`
 
+isBlank = (val) -> !val
+
 m = Ember.Object.extend
   expenseTime: '12:00'
   
@@ -9,17 +11,21 @@ m = Ember.Object.extend
     timeStr = @get('expenseTime')
     TimeUtil.combineDateAndTime(date,timeStr)
 
-  createRecord: ->
+  createRecord: (errorFunc) ->
     # TODO: validate stuff
 
-    if @get('amount')
+    if isBlank(@get('amount'))
+      errorFunc('Missing Amount')
+      null
+    else if isBlank(@get('description'))
+      errorFunc('Missing Description')
+      null
+    else
       @get('store').createRecord 'expense', 
-        amount: parseInt(@get('amount'))
+        amount: parseFloat(@get('amount'))
         expenseDt: @getFullDate()
         description: @get("description")
         comment: @get('comment')
-    else
-      null
 
   reset: ->
     @set "amount",null
@@ -28,12 +34,11 @@ m = Ember.Object.extend
     @set "comment",null
     @set "expenseTime","12:00"
 
-  save: ->
-    record = @createRecord()
+  save: (errorFunc) ->
+    record = @createRecord(errorFunc)
     if record
       record.save()
-      true
     else
-      false
+      null
 
 `export default m`

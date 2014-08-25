@@ -12,4 +12,19 @@ makeServer = ->
       expense = expenses.find (e) -> e.id == parseInt(request.params.id)
       [200, {"Content-Type": "application/json"}, JSON.stringify({expense: expense})]
 
+    @post "/users/sign_in", (request) ->
+      console.debug "in user sign in"
+      console.debug request.params
+      
+      if !request.requestBody.match("wrong")
+        body = {id: 1, email: "jsmith@fake.com"}
+        [200, {"Content-Type": "application/json"}, JSON.stringify(body)]
+      else
+        [402, {"Content-Type": "application/json"}, {}]
+        
+
+      
+
 `export default makeServer`
+
+# user%5Bemail%5D=jsmith%40fake.com&user%5Bpassword%5D=password

@@ -29,6 +29,7 @@ test 'New Expense Row', ->
 
 test 'New Expense Save - Date', ->
   visit "/expenses"
+  fillInExpense 'description','filler'
   fillInExpense 'amount',250
   fillInExpense 'expense-date','08/17/2014'
   fillInExpense 'expense-time','9:30'
@@ -46,6 +47,7 @@ test 'New Expense Save - Date', ->
 test 'save multiple new expenses', ->
   visit "/expenses"
   fillInExpense 'amount',300
+  fillInExpense 'description','filler'
   andThen =>
     equal find("#new-expense .amount input").val(),"300"
 
@@ -57,6 +59,7 @@ test 'save multiple new expenses', ->
 
   fillInExpense 'amount',50
   fillInExpense 'expense-date','9/1/14'
+  fillInExpense 'description','filler'
 
   click "#new-expense button"
 
@@ -67,13 +70,24 @@ test 'save multiple new expenses', ->
     equal expenseVal('expense-date',4),"9/1/14"
     equal find("#new-expense .amount input").val(),""
 
-test "save invalid", ->
+test "save invalid - missing amount", ->
   visit "/expenses"
+  fillInExpense 'description','hello'
   click "#new-expense button"
 
   andThen =>
     equal find("#flash").length,1
     equal find("#flash").text(),"Missing Amount"
+    shouldHaveExpenseRowCount 2
+
+test "save invalid - missing description", ->
+  visit "/expenses"
+  fillInExpense 'amount','25'
+  click "#new-expense button"
+
+  andThen =>
+    equal find("#flash").length,1
+    equal find("#flash").text(),"Missing Description"
     shouldHaveExpenseRowCount 2
 
 

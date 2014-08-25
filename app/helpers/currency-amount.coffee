@@ -5,6 +5,8 @@ h = Ember.Handlebars.makeBoundHelper (amt) ->
   if amt
     amt = parseFloat(Math.round(amt*100))/100.0
     res = "$#{amt}"
+    res += "0" if res.split(".").length == 2 && res.split(".")[1].length == 1
+    res
   new Ember.Handlebars.SafeString(res)
 
 `export default h`

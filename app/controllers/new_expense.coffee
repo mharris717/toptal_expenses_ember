@@ -3,9 +3,13 @@
 c = Ember.ObjectController.extend
   actions: 
     save: ->
-      if @get('model').save()
+      errorFunc = (error) ->
+        jQuery("#flash").text(error)
+
+      if @get('model').save(errorFunc)
         @get('model').reset()
-      else
-        jQuery("#flash").text('Missing Amount')
+        jQuery("#flash").text("")
+
+        
 
 `export default c`

@@ -1,6 +1,6 @@
 `import startApp from 'expenses/tests/helpers/start-app'`
 
-if false
+if true
   App = null
 
   module 'Integration - Unauthorized User',
